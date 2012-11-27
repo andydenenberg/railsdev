@@ -1,0 +1,124 @@
+#showcase-browser {
+  background: #ececec;
+  background: -webkit-linear-gradient(#f8f8f8 50%, #dedede);
+  background: -moz-linear-gradient(#f8f8f8 50%, #dedede);
+  background: -ms-linear-gradient(#f8f8f8 50%, #dedede);
+  background: linear-gradient(#f8f8f8 50%, #dedede);
+  border-radius: 5px 5px 0 0;
+}
+#showcase-browser > .more {
+  display: none;
+  float: right;
+  margin: 46px 35px 0;
+}
+#showcase-browser nav {
+  display: table;
+  margin: 0 35px;
+}
+#showcase-browser nav ul {
+  display: table-row;
+}
+#showcase-browser nav ul li {
+  display: table-cell;
+  vertical-align: top;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+#showcase-browser nav ul li:last-child {
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+#showcase-browser nav ul li:first-child a {
+  border-radius: 5px 0 0 0;
+}
+#showcase-browser nav ul li a {
+  display: table-cell;
+  width: 120px;
+  height: 110px;
+  vertical-align: top;
+  text-align: center;
+  text-decoration: none;
+  line-height: normal;
+  font-size: 13px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  padding: 18px 15px 12px;
+  color: inherit;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+#showcase-browser nav ul li a img {
+  display: block;
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 8px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+#showcase-browser nav ul li a:hover {
+  background: #fff;
+  background: -webkit-linear-gradient(#ffffff 80%, #ececec);
+  background: -moz-linear-gradient(#ffffff 80%, #ececec);
+  background: -ms-linear-gradient(#ffffff 80%, #ececec);
+  background: linear-gradient(#ffffff 80%, #ececec);
+}
+#showcase-browser nav ul li a.active,
+#showcase-browser nav ul li a:active {
+  background: #cccccc url(/assets/browser-active-bg.png) bottom center;
+  background-size: cover;
+  padding-top: 19px;
+  padding-bottom: 11px;
+}
+#showcase-content {
+  overflow: hidden;
+  position: relative;
+  height: 1000px;
+}
+#showcase-content .showcase {
+  position: absolute;
+  top: 0;
+  left: 1030px;
+  margin: 35px;
+  display: block;
+}
+#showcase-content .showcase.active {
+  display: block;
+}
+#showcase-content .showcase .platforms {
+  float: right;
+}
+#showcase-content .showcase .platforms h4 {
+  font-size: 13px;
+  color: #888a85;
+  margin-bottom: 3px;
+}
+#showcase-content .showcase .platforms li {
+  color: transparent;
+  font-size: 0;
+  overflow: hidden;
+  text-indent: 50px;
+  width: 28px;
+  height: 28px;
+  background-image: url(/assets/platforms.png);
+  float: right;
+  margin-left: 8px;
+}
+#showcase-content .showcase .platforms li.wp {
+  background-position: 0 0;
+}
+#showcase-content .showcase .platforms li.ios {
+  background-position: -30px 0px;
+}
+#showcase-content .showcase .platforms li.android {
+  background-position: -60px 0px;
+}
+#showcase-content .showcase hgroup {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+#showcase-content .showcase hgroup h1 {
+  margin-bottom: 0;
+}
+#showcase-content .showcase hgroup .feature {
+  margin-top: -0.4em;
+}

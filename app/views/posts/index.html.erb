@@ -1,0 +1,101 @@
+
+<div id="top-container">
+	<div id="global-header">
+		<div class="local-bar">
+			<nav role="navigation">
+				
+				<h1 class="logo">
+					<a href="/"><img src="/assets/RORD_logo.png" width="350" height="30" data-retina /></a>
+				</h1>
+				
+				<ul class="local-navigation main" role="navigation">
+					<li><a href="/">Home</a></li>
+					<li class="dropdown"><a href="#">Information</a>
+						<ul>
+							<li><%= link_to 'Projects', projects_path %></li>
+							<li><%= link_to 'About', about_path %></li>
+							<li><%= link_to 'Contact', '#' %></li>
+						</ul>
+					</li>
+					<li><a href="#" class="active">Experience</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="Head transparent-bar" id="Head">
+		<div class="Row">
+			<ul class="ForumMenu">
+				<li><a href="#" class="">Posts</a></li>
+				<li><a href="#" class="BestOf"></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="Frame">
+   <div id="Body">
+      <div class="Row">
+
+<div class="Column ContentColumn">
+	<div class="ForumSearch">
+		<form method="get" action="/search">
+			<div>
+				<input type="text" id="Form_Search" name="Search" value="" placeholder="Search forums..." class="InputBox" /><input type="submit" id="Form_Go" value="Go" class="Button" />
+			</div>
+		</form>
+	</div>
+    
+	<div class="MessageList Discussion"><!-- Page Title -->
+		<div class="PageTitle"><h1>Key Findings</h1>
+		</div>
+
+
+
+<div class="P PageDescription"></div>
+   <div class="DataTableWrap">
+   <table class="DataTable CategoryTable">
+      <thead>
+      <tr>
+	      <td class="BlockColumn LatestPost">Title</td>
+	      <td class="BigCount CountDiscussions">Category</td>
+	      <td class="BigCount CountComments">User</td>
+	      <td class="CategoryName">Body</td>
+		  <td>Actions</td>
+   	  </tr>
+      </thead>
+      <tbody>
+		<% @posts.each do |post| %>
+            <tr class="Item Category-ios Depth1 Depth-1 Unread">
+      			<td class="CategoryName">
+         			<h2><%= link_to post.title, post_path(post) %></h2>
+   </td>
+		      <td class="BigCount CountDiscussions"><%= post.category %></td>
+		      <td class="BigCount CountComments"><%= post.user_id %></td>
+		      <td class="BlockColumn LatestPost"><%= post.body %></td>
+		    <td><%= link_to 'Show', post_path(post) %>
+		        <%= link_to 'Edit', edit_post_path(post) %>
+		        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+   		</tr>
+<% end %>
+
+         </tbody>
+   </table>
+	<br>
+	<%= link_to 'New Post', new_post_path, :class => 'btn' %>
+	
+   <div class="pagination pagination-center">
+     <ul>
+       <li><a href="#">&laquo;</a></li>
+       <li class='active'><a href="#">1</a></li>
+       <li><a href="#">2</a></li>
+       <li><a href="#">3</a></li>
+       <li><a href="#">4</a></li>
+       <li><a href="#">5</a></li>
+       <li><a href="#">&raquo;</a></li>
+     </ul>
+   </div>
+
+   </div>
+
+  </div>
+</div>

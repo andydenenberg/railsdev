@@ -1,5 +1,44 @@
-<h3>Users</h3>
-<div class="span8">
+<div id="top-container" class="covering-main-page">
+	<div id="global-header">
+        <div class="global-bar">
+             <nav role="navigation">                 
+                 <h1 class="logo">
+                     <a href="/"><img src="/assets/RORD_logo.png" width="350" height="30" data-retina /></a>
+                 </h1>                 
+                 <ul id="global-navigation" class="main" role="navigation">
+				  <% if user_signed_in? %>
+					<li><%= link_to current_user.email, edit_user_registration_path %></li>
+					<li><%= link_to 'Projects', projects_path %></li>
+					<li><%= link_to 'About', about_path, :class => 'active' %></li>
+					<li><%= link_to 'Experience', posts_path %></li>
+				  <% else %>
+					<li><%= link_to 'More Info', new_user_registration_path %></li>
+					<li><%= link_to 'Login', new_user_session_path %></li>
+				  <% end %>	
+                 </ul>                
+             </nav>
+         </div>
+     </div>	
+</div>
+
+<div id="container">
+	
+	<div class="main-page">
+				
+		<div id="showcase-content" class="include-shadow" style='height:400px;'>
+			<div id="app-rdio" class="showcase columns active" style="left: 0;">
+				<div class="cell width-12 first">
+					
+					<hgroup>
+						<h3>Users</h3>
+					</hgroup>
+				</div>
+				
+<div class="cell width-12 first">	
+	<div class="rich-content">
+
+
+<h3>Roles and Stats</h3>
 <table class="table table-condensed">
 	  <thead>
       <tr>
@@ -7,6 +46,8 @@
           <th>Email</th>
           <th>Registered</th>
           <th>Role</th>
+		  <th>Visits</th>
+		  <th>Most Recent</th>
           <th></th>
           <th></th>                                      
       </tr>
@@ -18,13 +59,28 @@
         <td><%= user.email %></td>
         <td><%= user.created_at.to_date %></td>
         <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %></td>
+        <td><%= user.sign_in_count if user.sign_in_count %></td>
+        <td><%= user.last_sign_in_at.to_date if user.last_sign_in_at %></td>
         <td>
           <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Change role</a>
-          <%= render user %>
         </td>
         <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>                                       
     </tr>
   <% end %>
   </tbody>
 </table>
+
+	</div>
+
 </div>
+<hr />
+	
+</div>
+</div>
+</div>
+</div>
+
+<!-- Modal -->
+<% @users.each do |user| %>
+<%= render user %>
+<% end %>

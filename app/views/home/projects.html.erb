@@ -1,0 +1,88 @@
+<script>
+$('document').ready(function() {
+ChangeProject('fairtaxes') ;
+});
+</script>
+
+<div id="top-container" class="covering-main-page">
+	<div id="global-header">
+        <div class="global-bar">
+             <nav role="navigation">                 
+                 <h1 class="logo">
+                     <a href="/"><img src="/assets/RORD_logo.png" width="350" height="30" data-retina /></a>
+                 </h1>                 
+                 <ul id="global-navigation" class="main" role="navigation">
+				  <% if user_signed_in? %>
+					<li><%= link_to current_user.email, edit_user_registration_path %></li>
+					<li><%= link_to 'Projects', projects_path, :class => 'active' %></li>
+					<li><%= link_to 'About', about_path %></li>
+					<li><%= link_to 'Experience', posts_path %></li>
+				  <% else %>
+					<li><%= link_to 'More Info', new_user_registration_path %></li>
+					<li><%= link_to 'Login', new_user_session_path %></li>
+				  <% end %>	
+                 </ul>                
+             </nav>
+         </div>
+     </div>	
+	<div id="feature-area">
+		<a href="/apps/all" style="margin-top: 6px;" class="float-right action-button">Contact Me</a>
+		<h1>Focused on Innovative Solutions</h1>
+	</div>
+
+</div>
+
+	<div id="container">
+	
+	<div class="main-page">
+		
+		<div id="showcase-browser">					
+			<nav>
+				<ul>
+					<li>
+						<a href="#" onclick="ChangeProject('fairtaxes');" id='fairtaxes_btn' >
+							<img src="/assets/bvr_graph_30.png" alt="" />
+							<span>Property Tax Analyzer</span>
+						</a>
+					</li>
+					
+					<li>
+						<a href="#" onclick="ChangeProject('talon');" id='talon_btn' >
+							<img src="/assets/home_screen_30.png" alt="" />
+							<span>Network Monitor</span>
+						</a>
+					</li>
+					
+					<li>
+						<a href="#" onclick="ChangeProject('stin');" id='stin_btn' >
+							<img src="/assets/stin_screen_30.png" alt="" />
+							<span>Philanthropy Application</span>
+						</a>
+					</li>
+					
+				</ul>
+			</nav>
+		</div>
+		
+		<hr />
+		
+		<div id="showcase-content" class="include-shadow"  style='height:700px;'>
+			<div id="app-rdio" class="showcase columns active" style="left: 0;">
+
+			<div id='talon'><%= render 'talon' %></div>				
+			<div id='fairtaxes'><%= render 'fairtaxes' %></div>				
+			<div id='stin'><%= render 'stin' %></div>
+
+			</div>
+			
+
+		</div>
+		
+		<hr />
+		
+				
+	</div>
+	
+	
+</div>
+

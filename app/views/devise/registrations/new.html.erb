@@ -1,4 +1,42 @@
-<h2>Sign up</h2>
+<div id="top-container" class="covering-main-page">
+	<div id="global-header">
+        <div class="global-bar">
+             <nav role="navigation">                 
+                 <h1 class="logo">
+                     <a href="/"><img src="/assets/RORD_logo.png" width="350" height="30" data-retina /></a>
+                 </h1>                 
+                 <ul id="global-navigation" class="main" role="navigation">
+				  <% if user_signed_in? %>
+					<li><%= link_to current_user.email, edit_user_registration_path %></li>
+					<li><%= link_to 'Projects', projects_path %></li>
+					<li><%= link_to 'About', about_path, :class => 'active' %></li>
+					<li><%= link_to 'Experience', posts_path %></li>
+				  <% else %>
+					<li><%= link_to 'More Info', new_user_registration_path %></li>
+					<li><%= link_to 'Login', new_user_session_path %></li>
+				  <% end %>	
+                 </ul>                
+             </nav>
+         </div>
+     </div>	
+</div>
+
+	<div id="container">
+	
+	<div class="main-page">
+				
+		<div id="showcase-content" class="include-shadow" style='height:800px;'>
+			<div id="app-rdio" class="showcase columns active" style="left: 0;">
+				<div class="cell width-12 first">
+					
+					<hgroup>
+						<h3>Sign Up</h3>
+					</hgroup>
+				</div>
+				
+<div class="cell width-12 first">	
+	<div class="rich-content">
+
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
   <%= f.error_notification %>
   <%= f.input :name, :autofocus => true %> 
@@ -7,4 +45,23 @@
   <%= f.input :password_confirmation, :required => true %>
   <%= f.button :submit, 'Sign up', :class => 'btn-primary' %>
 <% end %>
+<br>
 <%= render "devise/shared/links" %>
+
+	</div>
+</div>
+				
+				
+			</div>
+			
+
+		</div>
+		
+		<hr />
+		
+				
+	</div>
+	
+	
+</div>
+

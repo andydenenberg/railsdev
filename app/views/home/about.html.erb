@@ -1,0 +1,68 @@
+<div id="top-container" class="covering-main-page">
+	<div id="global-header">
+        <div class="global-bar">
+             <nav role="navigation">                 
+                 <h1 class="logo">
+                     <a href="/"><img src="/assets/RORD_logo.png" width="350" height="30" data-retina /></a>
+                 </h1>                 
+                 <ul id="global-navigation" class="main" role="navigation">
+				  <% if user_signed_in? %>
+					<li><%= link_to current_user.email, edit_user_registration_path %></li>
+					<li><%= link_to 'Projects', projects_path %></li>
+					<li><%= link_to 'About', about_path, :class => 'active' %></li>
+					<li><%= link_to 'Experience', posts_path %></li>
+				  <% else %>
+					<li><%= link_to 'More Info', new_user_registration_path %></li>
+					<li><%= link_to 'Login', new_user_session_path %></li>
+				  <% end %>	
+                 </ul>                
+             </nav>
+         </div>
+     </div>	
+</div>
+
+	<div id="container">
+	
+	<div class="main-page">
+				
+		<div id="showcase-content" class="include-shadow" style='height:800px;'>
+			<div id="app-rdio" class="showcase columns active" style="left: 0;">
+				<div class="cell width-12 first">
+					
+					<hgroup>
+						<h3>Andy M. Denenberg</h3>
+					</hgroup>
+				</div>
+				
+<div class="cell width-12 first">	
+	<div class="rich-content">
+
+	<h3>Introduction</h3>
+	<p>I am a tireless problem solver and always seeking to improve and grow.  I have a spent the past couple of years learning Ruby, Rails, TDD, Agile and many supporting technologies and methodologies.  I have built a number of my own applications and am now ready ready to work on a team to build something bigger than one individual can create.  These applications have been through the complete lifecycle and continue to evolve and grow.  The experience of creating them has provided me an opportunity to learn how to be proficient in the ROR environment.  I am now ready to apply the skill and experience to a team that is building a great product or service.  I am excited, confident and ready.</p>
+
+	<h3>Technical Skills</h3>
+	<p>I have an extensive background in Networking Technology and protocols, having spent many years developing hardware and software products used for data communications.  I have built software products using many languages ranging from Assembler to C++.  Over the past year I have focused on learning the skills required to build complete Web applications using an MVC framework.  I am proficient in all facets of a application's design including data modeling, logic and presentation.  My pursuit to acquire skill and expertise has been broad, but I have more experience in architecture, data and code design and less on presentation (CSS) and test development.  I believe in the value of dry code and test driven development and I am always working to increase my skill level in these areas.</p>
+	<p>My preferred platform is Ruby on Rails, Git and Github and hosted on Ubunto or Heroku.  I have used Twitter Bootstrap as base style for most of the applications that I have built.</p>
+
+	<h3>Education</h3>
+	<p>BS Electrical Engineering: Colorado State University
+	<br>Post Graduate Studies in Digital Signal Processing: Illinois Institute of Technology
+	<br>Ruby on Rails: Depaul University</p>
+	<br>
+	</div>
+</div>
+				
+				
+			</div>
+			
+
+		</div>
+		
+		<hr />
+		
+				
+	</div>
+	
+	
+</div>
+
