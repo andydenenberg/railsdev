@@ -214,9 +214,9 @@ Next you update your application layout file:
 < %= stylesheet_link_tag "application-all", :media => "all" %>
 < %= stylesheet_link_tag "application-print", :media => "print" %>
 
-<!--[if lte IE 8]>
-    <%= stylesheet_link_tag "application-ie", :media => "all" %>
-<![endif]-->
+< !--[if lte IE 8]>
+    < %= stylesheet_link_tag "application-ie", :media => "all" %>
+<! [endif]-->
 Lastly, don't forget to include these new manifest files in your config/environments/production.rb:
 
 config.assets.precompile += %w( application-all.css application-print.css application-ie.css )
