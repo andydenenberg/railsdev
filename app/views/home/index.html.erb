@@ -6,13 +6,14 @@
                      <a href="/"><img src="/assets/RORD_logo.png" width="350" height="30" data-retina /></a>
                  </h1>                 
                  <ul id="global-navigation" class="main" role="navigation">
-				  <% if user_signed_in? %>
-					<li><%= link_to current_user.email, edit_user_registration_path %></li>
 					<li><%= link_to 'Projects', projects_path %></li>
 					<li><%= link_to 'About', about_path %></li>
-					<li><%= link_to 'Experience', posts_path %></li>
+				  <% if user_signed_in? %>
+						<% if current_user.has_role? :admin %>
+							<li><%= link_to 'Experience', posts_path %></li>					
+					    <% end %>
+					<li><%= link_to current_user.email, edit_user_registration_path %></li>
 				  <% else %>
-					<li><%= link_to 'More Info', new_user_registration_path %></li>
 					<li><%= link_to 'Login', new_user_session_path %></li>
 				  <% end %>	
                  </ul>                
@@ -20,10 +21,9 @@
          </div>
      </div>
 	<div id="feature-area">
-		<a href="/apps/all" style="margin-top: 6px;" class="float-right action-button">Contact Me</a>
+		<%= link_to 'Make Contact', contact_path, :class => "float-right action-button", :style => "margin-top: 6px;" %>
 		<h1>Focused on Innovative Solutions</h1>
-	</div>
-	
+	</div>	
 </div>
 
 
@@ -245,18 +245,20 @@ config.assets.precompile += %w( application-all.css application-print.css applic
 </aside>
 
 <aside class="widget s2_form_widget"><h3 class="widget-title">Subscribe</h3><div class="search">
-	<form method="post" action="#">
-		<input type="hidden" name="ip" value="72.66.101.72" />
-		<p><label for="s2email">Your email:</label><br />
-		<input type="text" name="email" id="s2email" value="Enter email address..." size="20" onfocus="if (this.value == 'Enter email address...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Enter email address...';}" /></p>
-		<p><input type="submit" name="subscribe" value="Subscribe" />&nbsp;<input type="submit" name="unsubscribe" value="Unsubscribe" /></p>
-	</form>
-</div>
+
+	<%= simple_form_for(@user,  :url => registration_path(@user), :html => {:class => 'form-vertical' }) do |f| %>
+	  <%= f.error_notification %>
+	  <%= f.input :email, :required => true, :placeholder => "Enter email address..."  %>
+	  <%= f.button :submit, 'Sign up' %>
+	
+	<% end %>
+
 </aside>
 
 <aside id="linkcat-2" class="widget widget_links"><h3 class="widget-title">Links</h3>
 	<ul class='xoxo blogroll'>
-<li><%= link_to 'Family Site', 'www.denenberg.net'%></li>
+<li><%= link_to 'Rails Guide', 'http://guides.rubyonrails.org/'%>
+<li><%= link_to 'Family Site', 'http://www.denenberg.net'%></li>
 	</ul>
 </aside>
 </div>
