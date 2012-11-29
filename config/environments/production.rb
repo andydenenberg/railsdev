@@ -62,7 +62,7 @@ Railsdev::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'www.denenberg.net' }
+  config.action_mailer.default_url_options = { :host => 'railsdev.denenberg.net' }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp
