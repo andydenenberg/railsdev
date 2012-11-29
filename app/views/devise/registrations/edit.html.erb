@@ -33,6 +33,8 @@
 			<% if current_user.has_role? :admin %>			
 						<%= link_to 'List Users', users_path, :class => 'btn' %>
 						<%= link_to 'List of Sites', list_users_path, :class => 'btn' %>
+						<br><br>
+						<%= request.user_agent %>
 			<% end %>
 						<br><br>
 				</div>
