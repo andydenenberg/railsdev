@@ -39,71 +39,46 @@
 <div id="Frame">
    <div id="Body">
       <div class="Row">
-         <div class="Column PanelColumn" id="Panel">
-                        <div class="BoxFilter BoxDiscussionFilter">
-   <ul class="FilterMenu">
-      <li class="AllCategories"><a href="/categories"><span class="Sprite SpAllCategories"></span> Forums</a></li>       <li class="Discussions"><a href="/discussions" class=""><span class="Sprite SpDiscussions"></span> Recent Threads</a></li>
-      <li class="Activities"><a href="/activity" class=""><span class="Sprite SpActivity"></span> Activity</a></li>      <li class="QnA-UnansweredQuestions "><a href="/discussions/unanswered" class="UnansweredQuestions"><span class="Sprite SpUnansweredQuestions"></span> Unanswered <span class="Aside"><span class="Count">7</span></span></a></li><li class="Reactions-BestOf"><a href="/bestof/everything"><span class="Sprite SpBestOf"></span> Best of...</a></li>   </ul>
-</div>
-                     </div>
-         <div class="Column ContentColumn" id="Content">
 
             <div class="MessageList Discussion"><!-- Page Title -->
-
-<div class="PageTitle">
-<!-- <h1>Title:</b><%= @post.title %></h1> -->
-<p id="notice"><%= notice %></p>
-</div>
-
+<br>
 <div id="Discussion_436" class="Item Unread ItemDiscussion  Role_Member  Offline">
    <div class="Discussion">
       <div class="Item-Header DiscussionHeader">
          <div class="AuthorWrap">
-
-<style type="text/css">
-select {height: 18px; width: 100px; max-height: 20px; font-size:12px}
-</style>
-
-<%= select_tag "count", "<option>'Discussion</option><option>News</option>".html_safe %><br>
-
+			<style type="text/css">
+			select {height: 18px; width: 100px; max-height: 20px; font-size:12px}
+			</style>
+			<%= select_tag "count", "<option>'Discussion</option><option>News</option>".html_safe %><br>
 			<p><b>Category:</b><%= @post.category %></p>
-
-			<p><b>User:</b><%= @post.user_id %></p>
-			
+			<p><b>User:</b><%= @post.user_id %></p>			
 			<p>
-
 			<%= link_to 'Edit', edit_post_path(@post) %> |
 			<%= link_to 'Back', posts_path %>
-</p>
-<br>
-<hr>
-
-Downloaded Image:<br>
-<%= image_tag('/assets/FT_map.png') %>
-
+			</p>
+			<br>
+			<hr>
+			Downloaded Image:<br>
+			<%= image_tag('/assets/FT_map.png') %>
          </div>
 
-<div class="Item-BodyWrap">
-<div class="Item-Body">
-   <div class="Message">   
-      <p>The Page Title...</p>
+	<div class="Item-BodyWrap">
+		<div class="Item-Body">
+		   <div class="Message">   
+		      <p>The Page Title...</p>
+				<blockquote class="Quote">
+				<p>Title:</b><%= @post.title %></p>
+				</blockquote>
 
+				<p>The code which looks like:</p>
 
-<blockquote class="Quote">
-<p>Title:</b><%= @post.title %></p>
-</blockquote>
-
-<p>The code which looks like:</p>
-
-<pre><code>
-<%= @post.body %>
-</code></pre>
-
-
-
-</div>		
-Place1
-</div></div>
+				<pre><code>
+				<%= @post.body %>
+				</code></pre>
+			</div>		
+		Place1
+		</div>
+	</div>
 Place2
 </div></div>
 Place3

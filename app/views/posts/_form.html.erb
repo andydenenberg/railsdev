@@ -1,14 +1,15 @@
-<%= simple_form_for(@post) do |f| %>
-  <%= f.error_notification %>
+<%= form_for(@post) do |f| %>
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :body %>
-    <%= f.input :category %>
-    <%= f.association :user %>
-  </div>
+  <lable>Title</lable><br>
+  <%= f.text_field :title %><br>
+  <lable>Message</lable><br>
+  <%= f.text_area :body, :rows => 7, :class => 'span5' %><br><br>
+	<lable>Category</lable><br>
+    <%= f.text_field :category %><br>
+	<lable>User</lable><br>
+    <%= f.text_field :user %><br>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => 'btn btn-info' %>
   </div>
 <% end %>
