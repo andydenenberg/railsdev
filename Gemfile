@@ -8,6 +8,8 @@ gem 'bootstrap-will_paginate'
 gem "net-ssh"
 gem "net-scp"
 
+gem 'brakeman'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

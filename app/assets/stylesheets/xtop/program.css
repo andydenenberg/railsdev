@@ -110,7 +110,7 @@ video {
 }
 html {
   background: #ececec;
-  background: url(../images/noise-bg.png), #ececec;
+  background: url(/assets/noise-bg.png), #ececec;
 }
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -121,9 +121,9 @@ body {
 }
 #top-container {
   background: #4f79a4;
-  background: url(../images/noise-bg.png), -webkit-radial-gradient(center center, cover circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4)), -webkit-linear-gradient(top, #5885b3 50%, #3a5b7e);
-  background: url(../images/noise-bg.png), -moz-radial-gradient(center center, cover circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4)), -moz-linear-gradient(top, #5885b3 50%, #3a5b7e);
-  background: url(../images/noise-bg.png), radial-gradient(center center, cover circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4)), linear-gradient(top, #5885b3 50%, #3a5b7e);
+  background: url(/assets/noise-bg.png), -webkit-radial-gradient(center center, cover circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4)), -webkit-linear-gradient(top, #5885b3 50%, #3a5b7e);
+  background: url(/assets/noise-bg.png), -moz-radial-gradient(center center, cover circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4)), -moz-linear-gradient(top, #5885b3 50%, #3a5b7e);
+  background: url(/assets/noise-bg.png), radial-gradient(center center, cover circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4)), linear-gradient(top, #5885b3 50%, #3a5b7e);
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -462,9 +462,9 @@ body {
 }
 #container {
   background: #ececec;
-  background: url(../images/noise-bg.png), -webkit-linear-gradient(top, #d7d7d7, #ececec 200px);
-  background: url(../images/noise-bg.png), -moz-linear-gradient(top, #d7d7d7, #ececec 200px);
-  background: url(../images/noise-bg.png), linear-gradient(top, #d7d7d7, #ececec 200px);
+  background: url(/assets/noise-bg.png), -webkit-linear-gradient(top, #d7d7d7, #ececec 200px);
+  background: url(/assets/noise-bg.png), -moz-linear-gradient(top, #d7d7d7, #ececec 200px);
+  background: url(/assets/noise-bg.png), linear-gradient(top, #d7d7d7, #ececec 200px);
   z-index: 2;
   position: relative;
   padding: 0 0 105px;
@@ -558,9 +558,9 @@ body {
 #top-container.empty-featured-area {
   padding-bottom: 105px;
   background: #ececec;
-  background: url(../images/noise-bg.png), -webkit-linear-gradient(top, #d7d7d7, #ececec);
-  background: url(../images/noise-bg.png), -moz-linear-gradient(top, #d7d7d7, #ececec);
-  background: url(../images/noise-bg.png), linear-gradient(top, #d7d7d7, #ececec);
+  background: url(/assets/noise-bg.png), -webkit-linear-gradient(top, #d7d7d7, #ececec);
+  background: url(/assets/noise-bg.png), -moz-linear-gradient(top, #d7d7d7, #ececec);
+  background: url(/assets/noise-bg.png), linear-gradient(top, #d7d7d7, #ececec);
 }
 #top-container.empty-featured-area + #container {
   background: transparent;

@@ -15,5 +15,6 @@ get 'home/about' => 'home#about', :as => :about
 get 'home/projects' => 'home#projects', :as => :projects
 get 'home/contact' => 'home#contact', :as => :contact
 post 'home/make_contact' => 'home#make_contact', :as => :make_contact
+get 'home/blog' => 'home#blog', :as => :blog
 end
 

@@ -1,0 +1,477 @@
+<div id="top-container" class="covering-main-page">
+	<div id="global-header">
+        <div class="global-bar">
+            <nav role="navigation">                 
+                <h1 class="logo">
+                    <a href="/"><img src="/assets/RORD_logo.png" width="350" height="30" data-retina /></a>
+                </h1>                 
+                <ul id="global-navigation" class="main" role="navigation">
+					<li><%= link_to 'Projects', projects_path %></li>
+					<li><%= link_to 'About', about_path, :class => 'active' %></li>
+				  <% if user_signed_in? %>
+						<% if current_user.has_role? :admin %>
+							<li><%= link_to 'Experience', posts_path %></li>					
+					    <% end %>
+					<li><%= link_to current_user.email, edit_user_registration_path %></li>
+				  <% else %>
+					<li><%= link_to 'Login', new_user_session_path %></li>
+				  <% end %>	
+                </ul>                
+            </nav>         </div>
+     </div>	
+</div>
+
+	<div id="container">
+	
+	<div class="main-page">
+				
+		<div id="showcase-content" class="include-shadow" style='height:800px;'>
+			<div id="app-rdio" class="showcase columns active" style="left: 0;">
+				<div class="cell width-12 first">
+
+<h4>http://pixlr.com/editor/</h4>
+
+<h4>http://www.eyecon.ro/colorpicker-and-datepicker-for-twitter-bootstrap.htm</h4>	
+	
+<h4>http://www.jshint.com/</h4>
+
+<h4>http://www.jeffmdean.com/</h4>
+
+<pre>
+http://www.zacksrw.com/manuals/10winning_strategies.pdf
+www.sumzero.com
+www.etfconnect.com
+http://www.philstockworld.com/
+http://www.etfreplay.com/
+www.gurufocus.com
+www.ycharts.com
+</pre>
+
+<h4>Install ImageMagick on Ubuntu</h4>
+<pre>
+apt-get install imagemagick librmagick-ruby libmagickwand-dev
+
+gem install rmagick
+</pre>
+
+<h4>When deploying with Capistrano make sure to</h4>
+<pre>
+Need to setup permissions for Capistrano to run
+sudo chmod a+w .
+in both the app root ( needed to make symbolic to create current )
+as well as the releases directory
+</pre>
+
+How To Use Key-Based Security With SSH On Ubuntu 12.04 Precise Pangolin
+http://www.jonathanmoeller.com/screed/?p=3635
+
+<h4>Quicks start for Rails on AWS with Bootstrap</h4>October 20, 2012
+
+<h3>Amazing App Creation Automation</h3>
+<%= link_to 'Rails Composer with Bootstrap', 'https://github.com/RailsApps/rails-composer/' %>
+
+<h3>Great Book on Rails</h3>
+<%= link_to 'Rails 3 in Action', '/Rails_3_in_Action.pdf' %>
+
+<h3>Install Ubunto 12.04 on Amazon EC-2 </h3>
+<pre>
+1. sudo apt-get install apache2
+2. sudo apt-get install mysql-server mysql-client
+3. sudo apt-get install build-essential git-core curl libmysqlclient-dev nodejs
+
+4. Install Ruby
+	sudo apt-get update
+	sudo apt-get install curl
+	curl -L get.rvm.io | bash -s stable
+	source ~/.rvm/scripts/rvm
+
+	# query rvm to determine the ruby requirements
+	rvm requirements
+	look for dependencies...should be somethng like the following:
+	
+	sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion pkg-config
+
+
+	rvm install 1.9.3
+	rvm use 1.9.3 --default
+
+	rvm rubygems latest
+
+5. Install Rails
+	gem install --no-rdoc --no-ri rails
+
+	Add this to the bottom of your ~/.bashrc file:
+	[[ -s "/home/ubuntu/.rvm/scripts/rvm" ]] && source "/home/ubuntu/.rvm/scripts/rvm"
+
+6. Install passenger
+	gem install passenger --no-rdoc --no-ri
+	
+	After the gem installs run 'passenger-install-apache2-module' 
+	the install will run and it will probably tell you that you are missing some stuff. So just install that stuff. In my case I need 'sudo apt-get install libcurl4-openssl-dev apache2-prefork-dev libapr1-dev libaprutil1-dev'. 
+	
+	So after that stuff installs, run 'passenger-install-apache2-module' again. After passenger installs  DON'T CLEAR THE SCREEN!!! You need to copy the LoadModule statement and paste that into your /etc/apache2/httpd.conf file.
+
+7. Create a rails app
+	rails new task_app -d mysql'
+	add 'gem therubyracer' to the Gemfile
+	export RAILS_ENV=production
+
+	rails g scaffold task name importance:boolean'
+
+	check out app/config/database.yml given us a default name of 'task_app_production'
+	rake db:create
+	rake db:migrate
+
+	Now we need to add this to our apache config file in /etc/apache2/httpd.conf
+
+	   LoadModule passenger_module /home/ubuntu/.rvm/gems/ruby-1.9.2-p320/gems/passenger-3.0.12/ext/apache2/mod_passenger.so
+	   PassengerRoot /home/ubuntu/.rvm/gems/ruby-1.9.2-p320/gems/passenger-3.0.12
+	   PassengerRuby /home/ubuntu/.rvm/wrappers/ruby-1.9.2-p320/ruby
+
+	VirtualHost *:80>
+	    ServerName www.yourserver.com
+	    DocumentRoot /home/ubuntu/task_app/public
+	     Directory /home/ubuntu>
+	        Allow from all
+	    /Directory>
+	/VirtualHost>
+
+	config/environments/production.rb and set 'config.assets.compile = true' rather than 'false'
+	
+	restart apache with 'sudo service apache2 restart' and you should be good to go!
+
+	http://lumbee-on-rails.blogspot.com/2012/05/aws-ubuntu-1204-apache-and-rails.html
+</pre>
+
+
+<h3>Using Resque and Redis to asynchronously send mail</h3>
+
+Using Macports install Redis<br>
+sudo port selfupdate<br>
+sudo port update outdated<br>
+sudo port install redis<br>
+<br>
+Run the Redis Server<br>
+redis-server<br>
+<br>
+Run the Resque Task<br>
+rake resque:work VERBOSE=1 QUEUE=*<br>
+<br>
+Test the connections<br>
+rake resque_mailer:send_test to_email=andy@effenfinance.com<br>
+<br>
+To Monitor the Resque System<br>
+resque-web -p 8282<br>
+<br>
+<br>
+
+
+<!-- Main hero unit for a primary marketing message or call to action -->
+<div class="page-header">
+<h3>Being Efficient and Productive</h3>
+<p>Keeping track of revelations, insights and helpful hints</p>
+</div>
+
+<h4>Running a Rails Stack at Amazon EC2</h4>July 22, 2012
+  <div class="row">
+    <div class="span14">
+
+https://www.digitalocean.com/community/articles/how-to-install-ruby-on-rails-on-ubuntu-12-04-lts-precise-pangolin-with-rvm
+gem install --no-rdoc --no-ri rails
+
+<p>
+For scheduled processing and tasks I have been running local Ubunto (11.10 & 12.04 ) running rake tasks under Rails.  The local environment doesn't scale well.  Its good for slow, but flexible job processing.   For Web Server hosting I have been using Heroku. This environment is good for fast and simple restful Rails applications.  Amazon EC2 has the potential to support both under one platform.
+
+<a href='http://ec2-107-20-90-5.compute-1.amazonaws.com:3000/'>http://ec2-107-20-90-5.compute-1.amazonaws.com:3000/</a>
+
+<p>This what is required to set it up:
+<pre>
+1. Under Amazon EC2 Console Dashboard click on Key Pairs
+
+2. Create and name a new key pair ie: blog_site
+
+3. Move the downloaded PEM file to the 
+	mv ~/Downloads/blog_site.pem ~/.ssh
+
+4. Update the PEM file to be read-only 
+	chmod 600 ~/.ssh/blog_site.pem
+
+5. Check for the file
+ 	ls ~/.ssh
+
+6. Create an instance of:
+ 	Amazon Linux AMI 2012.03 64 bit Free tier eligible - The Amazon Linux AMI 2012.03 is an EBS-backed, PV-GRUB image. It includes Linux 
+3.2, AWS tools, and repository access to multiple versions of MySQL, PostgreSQL, Python, Ruby, and Tomcat.
+
+	Name the site: Blog Site
+	Select the key pair: blog_site
+
+7. Determine the public DNS for the site under running instances:
+	ec2-23-20-248-11.compute-1.amazonaws.com
+
+8. Login to the running instance as: ec2-user
+	ssh -i ~/.ssh/blog_site.pem ec2-user@ec2-23-20-248-11.compute-1.amazonaws.com
+	Note: make sure to use to correct PEM file...
+
+9. You in...
+
+10. Now to install Rails
+
+11. sudo -s
+
+12. sudo yum update
+
+13. ruby -v
+
+14. groupadd rvm
+
+15. gpasswd -a ec2-user rvm
+
+16. yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison iconv-devel
+
+17. curl -L get.rvm.io |bash -s stable
+rvm install 1.9.3
+
+18. ruby -v
+
+19. rvm rubygems latest
+
+20. gem install --no-rdoc --no-ri rails
+
+Thats it!
+
+No Create a Rails App
+
+1.  rails new new_app
+
+2.  cd new_app
+
+3.  vim gemfile
+	i ( insert a # to comment out the sqlite gem )
+	esc
+	:wq to save
+	
+4. vim public/index.html
+    v ( starts the process to highlight text )
+	esc
+	dd ( deletes highlighted text )
+	:wq to save
+5. 
+
+http://www.tuxfiles.org/linuxhelp/vimcheat.html
+
+</pre>
+	
+		</p>
+<br>
+
+<h4>The simplicity of rails in the cloud</h4>June 28, 2012
+  <div class="row">
+    <div class="span14">
+
+<p>
+I plan to present how simple and lightweight rails is to a current Microsoft Shop.  My plan is to run through a very quick example using scaffolding, github and Heroku.  Here are the steps:
+
+<pre>
+1. Create the basic rails app
+	- rails new new_app
+2. Create a TextMate project for new_app
+	- mate new_app
+3. Generate the scaffold with simple data fields
+	- rails g scafold emp name:string age:integer salary:decimal
+4. Run Migration
+	- rake db:migrate
+5. Delete the public/index.html
+6. Update routes
+	- set root to emp#index
+7. Install the bundle of gems
+	- bundle install
+8. Test locally
+	- rails s
+9. Prepare database for PG on Heroku
+	- add to following to gemfile
+
+	group :production do
+	gem 'pg'
+	end
+	group :development, :test do
+	gem 'sqlite3'
+	end
+
+10. Create a git repo
+
+	git init
+	git add .
+	git commit -a -m "whatever comments"
+	git remote add origin git@github.com:andydenenberg/ajax_hw.git
+	git push origin master
+
+11. Push up to Heroku
+
+	heroku create
+	heroku rename appname
+	git push heroku master
+	heroku rake db:migrate
+
+12. heroku open - Thats it!
+</pre>
+
+	<br>
+	<br>
+	</p>
+  </div>
+</div>		
+
+
+<h4>Adding Devise Password Confirmation</h4>June 12, 2012
+  <div class="row">
+    <div class="span14">
+<p>
+	<pre>
+1. Gemfile - add 'sendfile'
+2. Create migration to add confirmation_token, confirmed_at and confirmation_sent_at to schema
+3. Create notifier.rb
+4. Append :confirmable to the User Model
+5. Insert config.action_mailer.default_url_options = { :host => 'localhost:3000' } into development.rb
+6. Insert config.action_mailer.default_url_options = { :host => '{appname}.heroku.com' } into production.rb
+7. Insert 
+
+config = YAML.load(File.read('../../../desktop/config.yml'))   
+
+	ActionMailer::Base.smtp_settings = {
+	  :user_name =>  config['user_name'],
+	  :password => config['password'],
+	#  :user_name =>  ENV['SENDGRID_USERNAME'] ,
+	#  :password => ENV['SENDGRID_PASSWORD'] ,
+	  :domain => "ospreypointpartners.com",
+	  :address => "smtp.sendgrid.net",
+	  :port => 587,
+	  :authentication => :plain,
+	  :enable_starttls_auto => true
+	}
+
+into environment.rb
+8. heroku addons:add sendgrid:starter
+9. heroku config:add SENDGRID_USERNAME=... & SENDGRID_PASSWORD=...
+</pre>
+<br>
+<br>
+	</p>
+    </div>
+  </div>		
+
+
+			<h4>Improvements to be made in Talon</h4>June 12, 2012
+			  <div class="row">
+			    <div class="span14">
+		<p>
+1. Add the mobile site option using jquery mobile for style<br>
+2. Show the status of the monitors<br>
+		<br>
+				</p>
+			    </div>
+			  </div>		
+
+
+
+	<h4>Rails Asset Pipeline</h4>June 10, 2012
+	  <div class="row">
+	    <div class="span14">
+<p>I have used the pipeline over the past few months without really digging in and understanding how is does its magic.  For the most part it has served up what I have shoved into the assets folders, but recently started to misbehave.  The pipeline process is quite simple so troubleshooting it shouldn't be that hard. The difficulty comes from the dependencies between the functions in files.  Loading precedence of individual files has a big impact.  I recently finished tuning this in <%= link_to 'Talon', 'http://talon-v2.heroku.com' %> with the following application.js file:
+<br>
+<code>
+//= require jquery<br>
+//= require jquery_ujs<br>
+//= require_directory ./jqplot<br>
+//= require_tree .<br>
+//= require ./jqplot/plugins/dateAxisRenderer<br>
+//= require ./jqplot/plugins/pieRenderer<br>
+</code><br>
+Inside the jqplot sub-directory is an index.js file which contains the following:
+<code><br>
+//= require_self<br>
+//= require ./jqplot.core<br>
+//= require ./jqplot.effects.core<br>
+//= require_directory .<br>
+</code><br>
+<pre>The order of loading is:
+1. jquery
+2. jquery_ujs
+3. index
+4. jqplot.core
+5. jqplot.effects.core
+6. ..the remaining files in jqplot sub-directory
+7. ..the remaining files in javascript
+8. dateAxisRenderer in the plugins subdirectory of jqplot
+9. pieRenderer in the plugins subdirectory of jqplot
+</pre>
+		</p>
+	    </div>
+	  </div>		
+	
+	
+		<h4>Rails on Heroku</h4>June 1, 2012
+		  <div class="row">
+		    <div class="span14">
+	<p>Running a rails app on Heroku is one of the finer things about developing in the ROR environment.  Making it work is very simple and easy.  Very Apple_esque...
+	<br>
+	
+First a couple of simple gem file tweaks if you are running sqlite local:
+<pre>
+gem 'therubyracer-heroku', :group => :production
+group :production do
+gem 'pg'
+end
+group :development, :test do
+gem 'sqlite3'
+end
+</pre>
+
+Second, Heroku needs to precompile assets so make this change to: production.rb:
+<pre>
+# Don't fallback to assets pipeline if a precompiled asset is missed
+config.assets.compile = true
+</pre>
+
+
+Finally, here is all you need to push a git repo to Heroku.  The rest is automatic...
+<pre>	
+heroku create appname
+heroku rename appname # if needed
+git push heroku master
+
+heroku rake db:migrate
+or 
+heroku db:push
+heroku db:pull
+if needed...
+heroku pg:reset SHARED_DATABASE
+</pre>
+
+Some handy Utilities..
+<pre>
+to reset heroku > 
+git remote rm heroku
+
+to debug on Heroku - heroku log
+
+to stop a Heroku App:
+heroku maintenance:on
+
+and later
+heroku maintenance:off
+</pre>	
+	
+			</div>
+			
+
+		</div>
+		
+		<hr />
+		
+				
+	</div>
+	
+	
+</div>
+
