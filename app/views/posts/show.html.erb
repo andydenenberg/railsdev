@@ -42,48 +42,69 @@
 
             <div class="MessageList Discussion"><!-- Page Title -->
 <br>
-<div id="Discussion_436" class="Item Unread ItemDiscussion  Role_Member  Offline">
-   <div class="Discussion">
-      <div class="Item-Header DiscussionHeader">
-         <div class="AuthorWrap">
-			<style type="text/css">
-			select {height: 18px; width: 100px; max-height: 20px; font-size:12px}
-			</style>
-			<%= select_tag "count", "<option>'Discussion</option><option>News</option>".html_safe %><br>
-			<p><b>Category:</b><%= @post.category %></p>
-			<p><b>User:</b><%= @post.user_id %></p>			
-			<p>
-			<%= link_to 'Edit', edit_post_path(@post) %> |
-			<%= link_to 'Back', posts_path %>
-			</p>
-			<br>
-			<hr>
-			Downloaded Image:<br>
-			<%= image_tag('/assets/FT_map.png') %>
-         </div>
+<div id="container">
+	<div class="main-page" id="blog-page">
+		<div class="content flush-padding">
+			<div class="columns">
+				<div class="cell width-8 first vertical-gap">
+					<div class="blog-posts ">
 
-	<div class="Item-BodyWrap">
-		<div class="Item-Body">
-		   <div class="Message">   
-		      <p>The Page Title...</p>
-				<blockquote class="Quote">
-				<p>Title:</b><%= @post.title %></p>
-				</blockquote>
+						
+<article>
+<hgroup>
+<header>
+By: <%= User.find(@post.user_id).name %> - Last Updated: <%= @post.updated_at.strftime("%m/%d/%Y") %>	
+	</header>	
+<h2><%= @post.title %></h2>
+	<footer>
+	<%= link_to 'Edit', edit_post_path(@post), :class => 'btn btn-mini' %> |
+	<%= link_to 'Back', posts_path, :class => 'btn btn-mini' %>
+	</footer>
+</hgroup>
+<div class="entry-content rich-content">
+<%= @post.body.html_safe %>
+</div>
+</article>
 
-				<p>The code which looks like:</p>
+<div class="navigation">
+		<div class="nav-previous">
+			
+			&larr;<%= link_to ' Older Post' , post_path(@post.previous), :class => "meta-nav" %></div>
+		<div class="nav-next"><%= link_to ' Newer Post' , post_path(@post.next), :class => "meta-nav" %>&rarr;</div>
+	</div>
+					</div>
+				</div>
+				<div class="blog-sidebar cell width-4 append-gutter vertical-gap" >
+					<div id="secondary" class="widget-area" role="complementary">
+						
+<aside class="widget s2_form_widget"><form method="get" action="#">
+<%= text_field_tag 'search', "Search" %>
+</form>
+</aside>
 
-				<pre><code>
-				<%= @post.body %>
-				</code></pre>
-			</div>		
-		Place1
+<aside class="widget s2_form_widget"><h3 class="widget-title">Subscribe</h3><div class="search">
+
+	<%= simple_form_for(@user,  :url => registration_path(@user), :html => {:class => 'form-vertical' }) do |f| %>
+	  <%= f.error_notification %>
+	  <%= f.input :email, :required => true, :placeholder => "Enter email address..."  %>
+	  <%= f.button :submit, 'Sign up' %>
+	
+	<% end %>
+
+</aside>
+
+<aside id="linkcat-2" class="widget widget_links"><h3 class="widget-title">Links</h3>
+	<ul class='xoxo blogroll'>
+<li><%= link_to 'Rails Guide', 'http://guides.rubyonrails.org/'%>
+<li><%= link_to 'Family Site', 'http://www.denenberg.net'%></li>
+	</ul>
+</aside>
+</div>
+				</div>
+			</div>
 		</div>
 	</div>
-Place2
-</div></div>
-Place3
-</div>
-Place4
+
 
 
 

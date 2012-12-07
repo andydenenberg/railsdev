@@ -14,6 +14,8 @@ class PostsController < ApplicationController
   def show
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @post = Post.find(params[:id])
+      @user = User.new
+      @user.name = ''
 
     respond_to do |format|
       format.html # show.html.erb
