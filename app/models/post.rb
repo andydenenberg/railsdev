@@ -1,6 +1,9 @@
 class Post < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :body, :category, :title, :user_id
+  attr_accessible :body, :category, :title, :user_id, :attachments_attributes
+  has_many :attachments, :dependent => :destroy
+  accepts_nested_attributes_for :attachments, :allow_destroy => true
+  
   
   def next
     post = Post.where("posts.id > ?", self.id).order("posts.id ASC").limit(1)

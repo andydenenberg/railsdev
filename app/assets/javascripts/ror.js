@@ -24,3 +24,12 @@ function ChangeProject(Proj) {
 		document.getElementById('stin').style.display = 'block'; 				
 	}
 }
+
+function AddAttachment(Post) {
+	$('#add_attachment_button').hide()
+    $.get('/posts/add_attachment', 
+          { post:Post, type_is:'<%= @type_is %>' },         
+          function(data) {
+            $("#attachment").html(data);
+          });
+  }

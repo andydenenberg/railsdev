@@ -9,7 +9,40 @@
 	<lable>User</lable><br>
 	<%= f.select :user_id , User.order('name').collect { |u|  [ u.name, u.id ] }, :html => { :selected => current_user.id } %>
 
+	<% i = 0 %>
+	<%= f.fields_for :attachments do |attach| %>
+	<div class='form-box'>
+	<div class='row'>
+		<div class='span4'>
+			<% if !attach.object.new_record? %>
+			<label class="checkbox inline">
+		<!--- attach.check_box :_destroy, {:checked => attach.object.persisted?}, '0', '1' %>Save Attachment? ---->
+				<%= attach.check_box :_destroy %><b>Delete Attachment <%= i ; i += 1 %></b>					
+			</label>
+			<% else %>
+			<label for="stackedSelect"><b>Attachment</b></label>
+			<% end %>				
+		</div>
+	</div>
+	<br>
+	<div class='row'>
+		<div class='span4'>
+				<label for="stackedSelect">URL</label>
+				<%= attach.text_field :url , :class => "input span3"%>
+				<label for="stackedSelect">Description</label>
+		</div>
+		<div class='span4'>
+				<label for="stackedSelect">Current File: <b><%= attach.object.file_file_name %></b></label><br>
+				<%= attach.file_field :file %>
+		</div>
+	</div>
+	</div>
+	<% end %>
+
+
+
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn btn-info' %>
   </div>
 <% end %>
+

@@ -44,7 +44,7 @@
 <br>
 <div id="container">
 	<div class="main-page" id="blog-page">
-		<div class="content flush-padding">
+		<div class="content flush-padding"  style='height:800px;'>
 			<div class="columns">
 				<div class="cell width-8 first vertical-gap">
 					<div class="blog-posts ">
@@ -52,17 +52,39 @@
 						
 <article>
 <hgroup>
-<header>
-By: <%= User.find(@post.user_id).name %> - Last Updated: <%= @post.updated_at.strftime("%m/%d/%Y") %>	
+	<header>
+	By: <%= User.find(@post.user_id).name %> - Last Updated: <%= @post.updated_at.strftime("%m/%d/%Y") %><br>
 	</header>	
-<h2><%= @post.title %></h2>
+	
+	<h2><%= @post.title %></h2>
+	
 	<footer>
 	<%= link_to 'Edit', edit_post_path(@post), :class => 'btn btn-mini' %> |
-	<%= link_to 'Back', posts_path, :class => 'btn btn-mini' %>
+	<%= link_to 'Back', posts_path, :class => 'btn btn-mini' %> |
+	<%= link_to_function 'Add Attachment', "AddAttachment(" + @post.id.to_s + "); return false", :class => 'btn btn-mini btn-primary' %>	
 	</footer>
 </hgroup>
+
 <div class="entry-content rich-content">
+	
+	<div id='attachment'></div>
+
 <%= @post.body.html_safe %>
+
+<% if @post.attachments.count > 0 %>
+<br><br><b>Attachments:</b><br><br>
+<% @post.attachments.each do |attach| %>
+	<% if !attach.url.blank? %>
+		<code>Link: <%= link_to attach.url, "http://" + attach.url, :target => '_blank' %></code>
+	<% end %>
+	<% if !attach.file.url.include?('missing.png') %>
+	<code>File: <%= link_to attach.file.url, attach.file.url, :target => '_blank' %></code><br>
+	<%= image_tag attach.file.url :thumb %>
+	<% end %>
+	<br>
+	<% end %> 
+<% end %>
+<br>
 </div>
 </article>
 

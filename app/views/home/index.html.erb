@@ -35,68 +35,10 @@
 				<div class="cell width-8 first vertical-gap">
 					<div class="blog-posts ">
 						
-<article id="post-2850" class="post-2850 post type-post status-publish format-standard hentry category-awesome category-monotouch category-news">
-<hgroup>
-	
-	<header>November 20, 2012</header>
-	
-<h2>Create a Hosted Cloud Solution in 10 steps</h2>
-	<footer>By Andy</footer>
-</hgroup>
-<div class="entry-content rich-content">
-<p>I plan to present how simple and lightweight rails is to a current Microsoft Shop. My plan is to run through a very quick example using scaffolding, github and Heroku. Here are the steps:</p>
-
-<pre>
-1. Create the basic rails app
-	- rails new new_app
-2. Create a TextMate project for new_app
-	- mate new_app
-3. Generate the scaffold with simple data fields
-	- rails g scafold emp name:string age:integer salary:decimal
-4. Run Migration
-	- rake db:migrate
-5. Delete the public/index.html
-6. Update routes
-	- set root to emp#index
-7. Install the bundle of gems
-	- bundle install
-8. Test locally
-	- rails s
-9. Prepare database for PG on Heroku
-	- add to following to gemfile
-
-	group :production do
-	gem 'pg'
-	end
-	group :development, :test do
-	gem 'sqlite3'
-	end
-
-10. Create a git repo
-
-	git init
-	git add .
-	git commit -a -m "whatever comments"
-	git remote add origin git@github.com:andydenenberg/ajax_hw.git
-	git push origin master
-
-11. Push up to Heroku
-
-	heroku create
-	heroku rename appname
-	git push heroku master
-	heroku rake db:migrate
-
-12. heroku open - Thats it!
-</pre>
-
-</div>
-</article>
-
 
 <article>
 <hgroup>
-	<header>November 20, 2012</header>
+	<header>January 10, 2013</header>
 	
 <h2>Download Database and User Created Content</h2>
 	<footer>By Andy</footer>
@@ -163,7 +105,7 @@ end
 <hgroup>
 	<header>November 20, 2012</header>
 	
-<h2>Download Database and User Created Content</h2>
+<h2>Organizing Pipeline Assets</h2>
 	<footer>By Andy</footer>
 </hgroup>
 <div class="entry-content rich-content">
@@ -171,8 +113,6 @@ end
 <p>What you want to do is use separate manifest files to break things up. First you have to re-organize your app/assets/stylesheets folder:</p>
 
 <pre>
-
-
 
 app/assets/stylesheets
 +-- all
@@ -227,6 +167,64 @@ config.assets.precompile += %w( application-all.css application-print.css applic
 </div>
 </article>
 
+<article id="post-2850" class="post-2850 post type-post status-publish format-standard hentry category-awesome category-monotouch category-news">
+<hgroup>
+	
+	<header>August 2, 2012</header>
+	
+<h2>Create a Hosted Cloud Solution in 10 steps</h2>
+	<footer>By Andy</footer>
+</hgroup>
+<div class="entry-content rich-content">
+<p>Very simple and lightweight.  Here's a quick Rails example using scaffolding, github and Heroku.</p>
+
+<pre>
+1. Create the basic rails app
+	- rails new new_app
+2. Create a TextMate project for new_app
+	- mate new_app
+3. Generate the scaffold with simple data fields
+	- rails g scafold emp name:string age:integer salary:decimal
+4. Run Migration
+	- rake db:migrate
+5. Delete the public/index.html
+6. Update routes
+	- set root to emp#index
+7. Install the bundle of gems
+	- bundle install
+8. Test locally
+	- rails s
+9. Prepare database for PG on Heroku
+	- add to following to gemfile
+
+	group :production do
+	gem 'pg'
+	end
+	group :development, :test do
+	gem 'sqlite3'
+	end
+
+10. Create a git repo
+
+	git init
+	git add .
+	git commit -a -m "whatever comments"
+	git remote add origin git@github.com:andydenenberg/ajax_hw.git
+	git push origin master
+
+11. Push up to Heroku
+
+	heroku create
+	heroku rename appname
+	git push heroku master
+	heroku rake db:migrate
+
+12. heroku open - Thats it!
+</pre>
+
+</div>
+</article>
+
 
 
 
@@ -245,16 +243,17 @@ config.assets.precompile += %w( application-all.css application-print.css applic
 </form>
 </aside>
 
+<% if @user %>
 <aside class="widget s2_form_widget"><h3 class="widget-title">Subscribe</h3><div class="search">
-
-	<%= simple_form_for(@user,  :url => registration_path(@user), :html => {:class => 'form-vertical' }) do |f| %>
-	  <%= f.error_notification %>
-	  <%= f.input :email, :required => true, :placeholder => "Enter email address..."  %>
-	  <%= f.button :submit, 'Sign up' %>
-	
-	<% end %>
-
+	  <%= form_tag make_contact_path do %>
+	  <%= hidden_field_tag :name %>
+	  <%= text_field_tag :email, nil, :required => true, :placeholder => "Enter email address..."  %>
+	  <%= hidden_field_tag :message, 'Signed-up at railsdevev.denenberg.net' %>
+	  <%= submit_tag 'Submit', :class => 'btn btn-small' %>
+	  <% end %>
 </aside>
+<% end %>
+
 
 <aside id="linkcat-2" class="widget widget_links"><h3 class="widget-title">Links</h3>
 	<ul class='xoxo blogroll'>

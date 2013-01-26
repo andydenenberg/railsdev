@@ -1,9 +1,15 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!
 
+  def add_attachment
+    @post = Post.find(params[:post])
+    @post.attachments.new
+    render :partial => 'add_attachment', :layout => false    
+  end
+
   def index
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
-    @posts = Post.paginate(:page => params[:page], :per_page => 5)
+    @posts = Post.paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,6 +32,8 @@ class PostsController < ApplicationController
   def new
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @post = Post.new
+    @post.attachments.build
+    
 
     respond_to do |format|
       format.html # new.html.erb

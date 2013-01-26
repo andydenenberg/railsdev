@@ -58,6 +58,7 @@ GEM
       xpath (~> 1.0.0)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
+    cocaine (0.3.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -122,6 +123,12 @@ GEM
     net-ssh (2.6.2)
     nokogiri (1.5.5)
     orm_adapter (0.4.0)
+    paperclip (3.2.0)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (>= 0.0.2)
+      mime-types
     polyglot (0.3.3)
     quiet_assets (1.0.1)
       railties (~> 3.1)
@@ -150,6 +157,7 @@ GEM
     rake (10.0.2)
     rdoc (3.12)
       json (~> 1.4)
+    rmagick (2.13.1)
     rolify (3.2.0)
     rspec-core (2.12.0)
     rspec-expectations (2.12.0)
@@ -225,8 +233,10 @@ DEPENDENCIES
   mysql2
   net-scp
   net-ssh
+  paperclip
   quiet_assets (>= 1.0.1)
   rails
+  rmagick
   rolify (>= 3.2.0)
   rspec-rails (>= 2.11.4)
   sass-rails (~> 3.2.3)

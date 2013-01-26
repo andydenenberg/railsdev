@@ -9,6 +9,8 @@ gem "net-ssh"
 gem "net-scp"
 
 gem 'brakeman'
+gem 'paperclip'
+gem "rmagick"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

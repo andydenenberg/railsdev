@@ -60,6 +60,7 @@
 	      <td>Title</td>
 	      <td>Category</td>
 	      <td>User</td>
+		  <td>Attachments</td>
 	      <td>Body</td>
 		  <td>Actions</td>
    	  </tr>
@@ -70,6 +71,7 @@
       			<td><%= link_to post.title, post_path(post) %></td>
 		      <td><%= Category.new.array[post.category][0] %></td>
 		      <td><%= User.find(post.user_id).name %></td>
+			  <td><%= post.attachments.count %></td>
 		      <td><pre><%= post.body[0..20] %></pre></td>
 		    <td><%= link_to 'Show', post_path(post) %>
 		        <%= link_to 'Edit', edit_post_path(post) %>
