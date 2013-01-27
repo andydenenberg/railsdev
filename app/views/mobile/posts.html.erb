@@ -1,0 +1,43 @@
+<style>
+
+
+
+</style>
+
+
+<div data-role="header">
+  <h1>Listing posts</h1>
+<%= link_to 'Add', new_post_path, "data-icon" => "plus", "class" => "ui-btn-right" %>
+
+</div>
+ 
+<div data-role="content">
+	
+	<div data-role="content" class="ui-content" role="main">
+	    <% @posts.each do |post| %>
+					<p><strong><%= post.updated_at %></strong></p>
+
+						<h3><%= post.title %></h3>
+						<p><%= post.body %></p>
+						<p class="ui-li-desc">Category: <%= post.category %></p>	
+			<div class="ui-grid-a">
+
+			    <div class="ui-block-a">
+				
+			    <%= link_to 'Edit' , mobile_posts_path, 'data-role' => "button", 'data-icon' => "arrow-r", 'data-theme' => "c", 'data-corners' => "true" , 'data-shadow' => "true" , 'data-iconshadow' => "true"  %></p>		
+				
+				</div>
+
+
+			    <div class="ui-block-b">
+				    <%= link_to 'Comment' , mobile_root_path, 'data-role' => "button", 'data-icon' => "arrow-r", 'data-theme' => "c", 'data-corners' => "true" , 'data-shadow' => "true" , 'data-iconshadow' => "true"  %></p>		
+
+				</div>	   
+		     </div>
+
+	    <% end %>
+
+	</div>
+	
+</div>
+

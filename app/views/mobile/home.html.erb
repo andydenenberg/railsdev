@@ -1,0 +1,63 @@
+
+
+<!-- Home -->
+<div data-role="page" id="page1">
+    <div data-theme="b" data-role="header">
+        <h5>
+            Ruby On Rails Development
+        </h5>
+    </div>
+
+    <div data-role="content">
+	
+	    <h4>
+            Focused on Innovative Solutions
+        </h4>
+		<p>If you are looking for a passionate Ruby on Rails Developer, you have come the right place!</p>
+		<p>I look forward to hearing from you.</p>
+		
+		<p>Andy</p>
+    
+        <div data-role="collapsible-set">
+            <div data-role="collapsible" data-collapsed="true">
+                <h3>
+                    About
+                </h3>
+				<h3>Introduction</h3>
+				<p>I am a tireless problem solver and always seeking to improve and grow.  I have a spent the past couple of years learning Ruby, Rails, TDD, Agile and many supporting technologies and methodologies.  I have built a number of my own applications and am now ready ready to work on a team to build something bigger than one individual can create.  These applications have been through the complete lifecycle and continue to evolve and grow.  The experience of creating them has provided me an opportunity to learn how to be proficient in the ROR environment.  I am now ready to apply the skill and experience to a team that is building a great product or service.  I am excited, confident and ready.</p>
+
+				<h3>Technical Skills</h3>
+				<p>I have an extensive background in Networking Technology and protocols, having spent many years developing hardware and software products used for data communications.  I have built software products using many languages ranging from Assembler to C++.  Over the past year I have focused on learning the skills required to build complete Web applications using an MVC framework.  I am proficient in all facets of a application's design including data modeling, logic and presentation.  My pursuit to acquire skill and expertise has been broad, but I have more experience in architecture, data and code design and less on presentation (CSS) and test development.  I believe in the value of dry code and test driven development and I am always working to increase my skill level in these areas.</p>
+				<p>My preferred platform is Ruby on Rails, Git and Github and hosted on Ubunto or Heroku.  I have used Twitter Bootstrap as base style for most of the applications that I have built.</p>
+
+				<h3>Education</h3>
+				<p>BS Electrical Engineering: Colorado State University
+				<br>Post Graduate Studies in Digital Signal Processing: Illinois Institute of Technology
+				<br>Ruby on Rails: Depaul University</p>
+				<br>
+
+            </div>
+            <div data-role="collapsible">
+                <h3>
+                    Make Contact
+                </h3>
+
+			  <%= form_tag make_contact_path do %>
+
+			  <% current_user ? name = current_user.name : name = '' %>
+			  <% current_user ? email = current_user.email : email = '' %>
+			  <lable>Your Name</lable><br>
+			  <%= text_field_tag :name, name %>
+			  <lable>Email</lable>
+			  <%= text_field_tag :email, email %>
+			  <lable>Message</lable>
+			  <%= text_area_tag :message, nil, :rows => 7, :class => 'span5' %>
+			  <%= submit_tag 'Send Message', :class => 'btn-primary' %>
+			  <% end %>
+			  <br>
+
+            </div>
+
+        </div>
+    </div>
+</div>
