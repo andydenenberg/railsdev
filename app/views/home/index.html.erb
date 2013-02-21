@@ -36,6 +36,96 @@
 					<div class="blog-posts ">
 						
 
+						<article>
+						<hgroup>
+							<header>February 21, 2013</header>
+
+						<h2>Deploying Rails 3.2.11 on Ubuntu with Capistrano</h2>
+							<footer>By Andy</footer>
+						</hgroup>
+						<div class="entry-content rich-content">
+						<p>Its simple and works well but there are a few caveats to be careful of:</p>
+
+Add Capistrano to Project Gemfile:
+<pre>
+gem 'capistrano'
+gem 'rvm-capistrano' # required for capistrano to run rake tasks in project
+</pre>
+
+Install Capistrano and tell it to create the initial script
+<pre>
+dev$ bundle install
+dev$ cd my_project
+dev$ capify .
+</pre>
+
+Edit config/deploy.rb to include the following:
+<pre>
+require "bundler/capistrano"
+require "rvm/capistrano" # required so that capistrano can run project rake tasks
+
+set :application, "Ftv4"
+set :repository,  "git@github.com:andydenenberg/ftv4.git"
+set :deploy_to, "/var/www/ftv4"
+set :user, "ubuntu"
+set :keep_releases, 5
+set :normalize_asset_timestamps, false  # 
+
+role :web, "107.20.214.190"  # Your HTTP server, Apache/etc
+role :app, "107.20.214.190"  # This may be the same as your `Web` server
+role :db,  "107.20.214.190", :primary => true # This is where Rails migrations will run
+
+after "deploy", "deploy:symlink_db", "deploy:precompile_assets"
+
+namespace :deploy do
+  desc "Symlinks the database.yml"
+  task :symlink_db, :roles => :app do
+    run "ln -nfs #{deploy_to}/shared/database.yml #{release_path}/config/database.yml"
+  end
+
+  desc "Precompile Assets"
+  task :precompile_assets, :roles => :app do
+# run "/bin/bash -l -c 'cd #{release_path} && RAILS_ENV=production rake assets:precompile'"
+  run "cd #{release_path}; RAILS_ENV=production rake assets:precompile"
+  end
+end
+
+desc "tail production log files" 
+task :tail_logs, :roles => :app do
+  run "tail -f #{shared_path}/log/production.log" do |channel, stream, data|
+    puts  # for an extra line break before the host name
+    puts "#{channel[:host]}: #{data}" 
+    break if stream == :err    
+  end
+end
+
+# if you want to clean up old releases on each deploy uncomment this:
+ after "deploy:restart", "deploy:cleanup"
+</pre>
+
+Tell Capistrano to setup the server for deployment
+<pre>dev$ cap deploy:setup
+</pre>
+
+Capistrano will create the base directory, but its is owned by root.<br>Change the directory and its subs to be owned by ubuntu.  
+<pre>server$ /var/www$ sudo chown -R ubuntu ftv4 from dev_machine:
+</pre>
+
+Database.yml should be in .gitignore so that individual versions can be managed on dev and server.<br><br>
+Place the server database.yml in the shared folder of the base directory.<br><br>
+Capistrano will set a symlink to it for each release that is pulled down to the server.
+<pre>
+dev$ scp config/database.yml.server ubuntu@107.20.214.190:/var/www/ftv4/shared/database.yml
+</pre>
+
+Deploy the release to the server
+<pre>cap deploy
+</pre>
+
+
+</div>
+</article>
+
 <article>
 <hgroup>
 	<header>January 10, 2013</header>
