@@ -36,30 +36,48 @@
 					<div class="blog-posts ">
 						
 
-						<article>
-						<hgroup>
-							<header>February 21, 2013</header>
+<article>
+<hgroup>
+	<header>February 21, 2013</header>
 
-						<h2>Deploying Rails 3.2.11 on Ubuntu with Capistrano</h2>
-							<footer>By Andy</footer>
-						</hgroup>
-						<div class="entry-content rich-content">
-						<p>Its simple and works well but there are a few caveats to be careful of:</p>
+<h2>Installing Wordpress on Ubuntu 12.04 with Apache2</h2>
+	<footer>By Andy</footer>
+</hgroup>
+<div class="entry-content rich-content">
+<p>After working with Wordpress to modify the contents on the Standtall Campaign Site and then working with RefineryCMS, I decided to install Wordpress and give it a whirl.</p>
 
-Add Capistrano to Project Gemfile:
+<h4>Simple instructions:</h4>
+<pre><a href="https://www.digitalocean.com/community/articles/how-to-install-wordpress-on-ubuntu-12-04" target="_blank">here...</a>
+</pre>
+<p>Check out a very elegant theme - The Journalist template by <a href='http://lucianmarin.com/page/themes'>Lucian E. Marin — Built for WordPress</a></p>
+</div>
+</article>
+
+
+<article>
+<hgroup>
+	<header>February 21, 2013</header>
+
+<h2>Deploying Rails 3.2.11 on Ubuntu with Capistrano</h2>
+	<footer>By Andy</footer>
+</hgroup>
+<div class="entry-content rich-content">
+<p>Its simple and works well but there are a few caveats to be careful of:</p>
+
+<h4>Add Capistrano to Project Gemfile:</h4>
 <pre>
 gem 'capistrano'
 gem 'rvm-capistrano' # required for capistrano to run rake tasks in project
 </pre>
 
-Install Capistrano and tell it to create the initial script
+<h4>Install Capistrano and tell it to create the initial script</h4>
 <pre>
 dev$ bundle install
 dev$ cd my_project
 dev$ capify .
 </pre>
 
-Edit config/deploy.rb to include the following:
+<h4>Edit config/deploy.rb to include the following:</h4>
 <pre>
 require "bundler/capistrano"
 require "rvm/capistrano" # required so that capistrano can run project rake tasks
@@ -103,28 +121,109 @@ end
  after "deploy:restart", "deploy:cleanup"
 </pre>
 
-Tell Capistrano to setup the server for deployment
+<h4>Tell Capistrano to setup the server for deployment</h4>
 <pre>dev$ cap deploy:setup
 </pre>
 
-Capistrano will create the base directory, but its is owned by root.<br>Change the directory and its subs to be owned by ubuntu.  
-<pre>server$ /var/www$ sudo chown -R ubuntu ftv4 from dev_machine:
+<h4>Capistrano will create the base directory, but its is owned by root. Change the directory and its subs to be owned by ubuntu.</h4>  
+<pre>server$ /var/www$ sudo chown -R ubuntu ftv4
 </pre>
 
-Database.yml should be in .gitignore so that individual versions can be managed on dev and server.<br><br>
-Place the server database.yml in the shared folder of the base directory.<br><br>
-Capistrano will set a symlink to it for each release that is pulled down to the server.
+<h4>Database.yml should be in .gitignore so that individual versions can be seperately managed on dev and server.</h4><br>
+<h4>Place the server database.yml in the shared folder of the base directory. Capistrano will set a symlink to it for each release that is pulled down to the server.</h4>
 <pre>
 dev$ scp config/database.yml.server ubuntu@107.20.214.190:/var/www/ftv4/shared/database.yml
 </pre>
 
-Deploy the release to the server
+<h4>Deploy the release to the server</h4>
 <pre>cap deploy
 </pre>
 
+</div>
+</article>
+
+
+
+<article>
+<hgroup>
+	<header>February 2, 2013</header>
+	
+<h2>Create a new Rails app with Rspec</h2>
+	<footer>By Andy</footer>
+</hgroup>
+<div class="entry-content rich-content">
+
+<p>Getting setup with a basic configration</p>
+
+<h4>at command line:</h4>
+<pre>rails new MYAPP -T # The -T option tells rails not to include Test::Unit</pre>
+<h4>in Gemfile:</h4>
+<pre><code>gem 'rspec-rails'</code></pre>
+<h4>in config/initializers/generator.rb</h4>
+<pre>Rails.application.config.generators do |g|
+  g.test_framework = :rspec
+end</pre>
+<h4>at command line:</h4>
+<pre>bundle install
+rails g rspec:install</pre>
+</pre>
 
 </div>
 </article>
+
+
+<article>
+<hgroup>
+	<header>January 28, 2013</header>
+	
+<h2>Scheduling Rake tasks using Crontab on Ubuntu</h2>
+	<footer>By Andy</footer>
+</hgroup>
+<div class="entry-content rich-content">
+
+<p>The trick to getting it to work is making sure that the path to RVM Gems is set properly</p>
+
+<pre>
+gem 'whenever', :require => false
+</pre>
+
+<h4>Edit the system crontab</h4>
+<pre>chrontab -e
+</pre>
+
+<h4>Log Format</h4>
+<pre>
+# minute (0-59), hour (0-23, 0 = midnight), day (1-31), month (1-12), weekday (0-6, 0 = Sunday), command
+
+0 22 * * * /bin/bash -l -c 'cd ~/rails/nvestr && RAILS_ENV=production bundle exec rake demo:daily_snapshot --silent >> /var/logs/my_app.log 2>> /var/logs/my_err.log'
+
+</pre>
+
+<h4>Rake Task</h4>
+<pre>namespace :update do
+	desc "Update log with daily results"
+	task :daily_snapshot => :environment do
+		Translog.daily_snapshot
+    end
+end
+</pre>
+
+<h4>The ruby code to mix-in</h4>
+<pre>module  Translog 
+
+def self.daily_snapshot
+	ss = Portfolio.family_rank
+	text = 'Daily Snapshot: '
+	text += ss.collect { |p| User.find(p[0]).name + ' = ' + p[1].to_s + ', ' }.join
+	PostLogger.debug(text)
+end
+</pre>
+
+</div>
+</article>
+
+
+
 
 <article>
 <hgroup>
