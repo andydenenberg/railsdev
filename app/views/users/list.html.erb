@@ -31,6 +31,23 @@
 			<div id="home_page" class="showcase columns active" style="left: 0;">
 				<div class="cell width-12 first">
 
+
+<% require 'mem_info' %>
+<% m = MemInfo.new %>
+<% vars = m.instance_variables %>
+<div class='row'>
+  <div class='span3'>
+   <table class='table table-condensed table-bordered table-striped'>
+     <% vars.each do |v| %>
+        <tr>
+                <th style='text-align:left;'><%= v.to_s.gsub!('@','').titleize %>:</th>
+                <td style='text-align:right;'><%= number_with_delimiter(m.instance_variable_get(v) )  %></td>
+        </tr>
+     <% end %>
+   </table>
+  </div>
+</div>
+<br><br>
 		
 <pre>
 www.denenberg.net 
@@ -40,106 +57,16 @@ User Name: Andy Denenberg
 git: stin_v3
 host: stin_v3.heroku.com
 
-http://ftv3.heroku.com/
-
+ftv3.heroku.com
 ospreypoint.heroku.com
-
 talonv2.heroku.com
-
 www.ospreypointcap.com
 www.ospreypointpartners.com
 ror.ospreypointpartners.com
-
 stc.ospreypointcap.com
 standtall.ospreypointcap.com
-
 </pre>
 
-<pre>
-  LoadModule passenger_module /home/ubuntu/.rvm/gems/ruby-1.9.3-p194/gems/passenger-3.0.17/ext/apache2/mod_passenger.so
-  PassengerRoot /home/ubuntu/.rvm/gems/ruby-1.9.3-p194/gems/passenger-3.0.17
-  PassengerRuby /home/ubuntu/.rvm/wrappers/ruby-1.9.3-p194/ruby
-
-#    NameVirtualHost *:80
-
-#    Listen 3000
-#    NameVirtualHost *:3000
-
-   # 107.20.214.190 
-
-   <VirtualHost *:80>
-     ServerName ror.ospreypointpartners.com
-     # !!! Be sure to point DocumentRoot to 'public'!
-     DocumentRoot /home/ubuntu/rails/oppcap/public    
-     <Directory /home/ubuntu/rails/oppcap/public>
-        # This relaxes Apache security settings.
-        AllowOverride all
-        # MultiViews must be turned off.
-        Options -MultiViews
-     </Directory>
-  </VirtualHost>
-
- <VirtualHost *:80>
-     ServerName stc.ospreypointcap.com
-     # !!! Be sure to point DocumentRoot to 'public'!
-     DocumentRoot /home/ubuntu/rails/stc/public    
-     <Directory /home/ubuntu/rails/stc/public>
-        # This relaxes Apache security settings.
-        AllowOverride all
-        # MultiViews must be turned off.
-        Options -MultiViews
-     </Directory>
-  </VirtualHost>
-
-  <VirtualHost *:80>
-     ServerName www.ospreypointpartners.com
-     # !!! Be sure to point DocumentRoot to 'public'!
-     DocumentRoot /home/ubuntu/rails/opp/public    
-     <Directory /home/ubuntu/rails/opp/public>
-        # This relaxes Apache security settings.
-        AllowOverride all
-        # MultiViews must be turned off.
-        Options -MultiViews
-     </Directory>
-  </VirtualHost>
-
-#    <VirtualHost *:3000>
-  <VirtualHost *:80>
-     ServerName standtall.ospreypointcap.com
-     # !!! Be sure to point DocumentRoot to 'public'!
-     DocumentRoot /home/ubuntu/rails/standtall_v2/public    
-     <Directory /home/ubuntu/rails/standtall_v2/public>
-        # This relaxes Apache security settings.
-        AllowOverride all
-        # MultiViews must be turned off.
-        Options -MultiViews
-     </Directory>
-  </VirtualHost>
-
-  <VirtualHost *:80>
-     ServerName railsdev.ospreypointpartners.com
-     # !!! Be sure to point DocumentRoot to 'public'!
-     DocumentRoot /home/ubuntu/rails/oppcap_new/public    
-     <Directory /home/ubuntu/rails/opp_new/public>
-        # This relaxes Apache security settings.
-        AllowOverride all
-        # MultiViews must be turned off.
-        Options -MultiViews
-     </Directory>
-  </VirtualHost>
-
-  <VirtualHost *:80>
-     ServerName railsdev.denenberg.net
-     # !!! Be sure to point DocumentRoot to 'public'!
-     DocumentRoot /home/ubuntu/rails/railsdev/public    
-     <Directory /home/ubuntu/rails/railsdev/public>
-        # This relaxes Apache security settings.
-        AllowOverride all
-        # MultiViews must be turned off.
-        Options -MultiViews
-     </Directory>
-  </VirtualHost>
-</pre>	
 	
 				</div>
 
