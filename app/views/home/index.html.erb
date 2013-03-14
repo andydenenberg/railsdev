@@ -34,6 +34,126 @@
 			<div class="columns">
 				<div class="cell width-8 first vertical-gap">
 					<div class="blog-posts ">
+
+<article>
+<hgroup>
+	<header>February 26, 2013</header>
+
+<h2>Creating a JSONp server to authenticate and exchange data through Phone Gap</h2>
+	<footer>By Andy</footer>
+</hgroup>
+<div class="entry-content rich-content">
+<p>There are a few gotchas, but overall its a good solution</p>
+
+<h4>Setup a Ruby gemset and a specific version of Rails:
+</h4>
+<pre>
+
+
+Follow this to setup server:
+<%= link_to 'rails/device/json', 'http://lucatironi.github.com/tutorial/2012/10/15/ruby_rails_android_app_authentication_devise_tutorial_part_one/' %>
+
+the add the following for Jsonp middleware support
+in config/application.rb
+require "/Users/andydenenberg/Documents/rails/json_auth/lib/rack/restful_jsonp_middleware.rb"
+and
+config.middleware.swap(Rack::MethodOverride,Rack::RestfulJsonpMiddleware)
+
+# restful_jsonp_middleware.rb
+module Rack
+  # Allows overwriting of HTTP method also in
+  # GET HTTP requests in order to allow
+  # RESTful JSONP calls
+  class RestfulJsonpMiddleware
+
+    HTTP_METHODS = %w(GET HEAD PUT POST DELETE OPTIONS)
+    METHOD_OVERRIDE_PARAM_KEY = "_method".freeze
+    HTTP_METHOD_OVERRIDE_HEADER = "HTTP_X_HTTP_METHOD_OVERRIDE".freeze
+
+    attr_accessor :method_parameter_name
+
+    def initialize(app)
+      @app = app
+      @method_parameter_name = METHOD_OVERRIDE_PARAM_KEY
+    end
+
+    # We check if the method parameter is in the request
+    # and set up the request to allow the execution of the
+    # overwritten HTTP method
+    def call(env)
+      req = Request.new(env)
+      method = req.params[@method_parameter_name]
+      method = method.to_s.upcase
+      if HTTP_METHODS.include?(method)
+        env["rack.methodoverride.original_method"] = env["REQUEST_METHOD"]
+        env["REQUEST_METHOD"] = method
+        env[HTTP_METHOD_OVERRIDE_HEADER] = method
+      end
+      @app.call(env)
+    end
+  end
+end
+</pre>
+<p>Next note will be setting up the javascript for Phonegap...
+	http://docs.phonegap.com/en/2.3.0/guide_getting-started_ios_index.md.html#Getting%20Started%20with%20iOS
+</p>
+</div>
+</article>
+
+
+
+<article>
+<hgroup>
+	<header>February 25, 2013</header>
+
+<h2>Using RVM Gemset to run older ROR environment</h2>
+	<footer>By Andy</footer>
+</hgroup>
+<div class="entry-content rich-content">
+<p>I recently had to do make some changes on an older rails app running Ruby 1.8.7 and Rails 3.0.9.  Rather than upgrade the environment I setup a gemset to run the older app and test the changes before rolling them out.</p>
+
+<h4>Setup a Ruby gemset and a specific version of Rails:
+</h4>
+<pre>
+1. Check to make sure the ruby version is installed
+ubuntu:~/rails$ rvm list
+
+rvm rubies
+
+=> ruby-1.8.7-p370 [ i686 ]
+ * ruby-1.9.3-p194 [ i686 ]
+
+# => - current
+# =* - current && default
+#  * - default
+
+2. Select the ruby version 
+ubuntu:~/rails$ rvm 1.8.7
+
+3. Create a gemset using a descriptive name
+ubuntu:~/rails$ rvm gemset create 309
+'309' gemset created (/home/andy/.rvm/gems/ruby-1.8.7-p370@309).
+
+4. Select the gemset
+ubuntu:~/rails$ rvm ruby-1.8.7-p370@309
+
+5. Install the desired version of rails
+ubuntu:~/rails$ gem install rails -v 3.0.9 --no-rdoc --no-ri
+
+6. Verify the rails version is loaded
+ubuntu:~/rails$ rails -v
+
+7. Setup the rails app to run the correct gemset
+ubuntu:~/rails$  rvm use ruby-1.8.7-p370@300
+
+PS: Want to delete the gemset and start over?
+ubuntu:~/rails$ rvm gemset delete 300
+
+</pre>
+<p>PSS: Want to create another version of rails with same ruby?  Create a new gemset and then install new rails...
+</p>
+</div>
+</article>
 						
 
 <article>
